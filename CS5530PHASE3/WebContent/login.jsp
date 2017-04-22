@@ -7,6 +7,6 @@
 <title>Login Page</title>
 </head>
 <body>
-<a href="loginIndex.html">back</a>
+<a href="index.html">back</a>
 </body>
 </html>
