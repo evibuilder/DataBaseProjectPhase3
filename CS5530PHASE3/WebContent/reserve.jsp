@@ -2,8 +2,8 @@
 <html>
 <head>
 <script>
-function check_all_fields(th_object, period_object){
-	if( th_object.attributeValue.value == "" || period_object.attributeValue.value == ""){
+function check_all_fields(form){
+	if( form.houseIdValue.value == "" || form.periodIdValue.value == ""){
 		alert("Form fields should be nonempty");
 		return false;
 	}
@@ -17,28 +17,23 @@ function check_all_fields(th_object, period_object){
 <h1>Reserve TH</h1>
 
 	<% 
-	String thIdString = request.getParameter("thAttribute");
+	String thIdString = request.getParameter("houseIdValue");
 	if(thIdString == null){
 	%>
 	
-	Enter ID of temporary housing to reserve
-	<form name="form_th">
-		<input type=hidden name="thAttribute" value="th">
-		<input type=text name="attributeValue" length=10>
-	</form>
-	<br>
-	
-	Enter ID of period to reserve
-	<form name="form_period" method=get onsubmit="return check_all_fields(form_th, this)" action="reserve.jsp">
-		<input type=hidden name="periodAttribute" value="period">
-		<input type=text name="attributeValue" length=10>
+	Enter ID of temporary housing and the available period to reserve:
+	<BR>
+	<form name="reserveForm" method=get onsubmit="return check_all_fields(this)" action="reserve.jsp">
+		<input type=text name=houseIdValue length=10 placeholder="House ID">
+		<input type=text name=periodIdValue length=10 placeholder="Period ID">
 		<input type=submit class="add to cart" value="add to cart">
 	</form>
-	
+	<br>
+
 	<%
 	} else {
 
-		String periodIdString = request.getParameter("periodAttribute");
+		String periodIdString = request.getParameter("periodIdValue");
 		
 		Connector con = new Connector();
 		Reservations res = new Reservations();
