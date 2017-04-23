@@ -5,15 +5,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script>
-function check_all_fields(lowerForm, upperForm, sortForm){
+function check_all_fields(form){
 	
-	if((lowerForm.attributeValue.value != "" && upperForm.attributeValue.value == "") || 
-			(lowerForm.attributeValue.value == "" && upperForm.attributeValue.value != "")){
+	if((form.lowerValue.value != "" && form.upperValue.value == "") || 
+			(form.lowerValue.value == "" && form.upperValue.value != "")){
 		alert("Please fill out both price ranges");
 		return false;
 	}
 	
-	if( sortForm.attributeValue.value == ""){
+	if( form.sortingValue.value == ""){
 		alert("You must choose how to sort the results");
 		return false;
 	}
@@ -28,67 +28,36 @@ function check_all_fields(lowerForm, upperForm, sortForm){
 
 
 		<%
-		String sorting = request.getParameter("sortAttribute");
+		String sorting = request.getParameter("sortingValue");
 		
 		if(sorting == null){
 		%>
 
-			Please fill out the fields you would like to search by:
-			<br>
-			
-			Lower price range:
-			<form name="lowerForm">
-				<input type=hidden name="lowerAttribute" value="lower">
-				<input type=text name="attributeValue" length=10>
-			</form>
-			<BR>
-			
-			Upper price range:
-				<form name="upperForm">
-				<input type=hidden name="upperAttribute" value="upper">
-				<input type=text name="attributeValue" length=10>
-			</form>
-			<BR>
-			
-			City:
-				<form name="cityForm">
-				<input type=hidden name="cityAttribute" value="city">
-				<input type=text name="attributeValue" length=10>
-			</form>
-			<BR>
-			
-			Keyword:
-				<form name="keywordForm">
-				<input type=hidden name="keywordAttribute" value="keyword">
-				<input type=text name="attributeValue" length=10>
-			</form>
-			<BR>
-			
-			Category:
-			<form name="categoryForm">
-				<input type=hidden name="categoryAttribute" value="category">
-				<input type=text name="attributeValue" length=10>
-			</form>
-			
-			How would you like to sort your results?:<p>
+			Please fill out the fields you would like to search by:<p>
+			Please note that results must be sorted by: <p>
 			1. by price<p>
 			2. by the average numerical score of the feedbacks<p>
 			3. by the average numerical score of the trusted user feedbacks<p>
-			<form name="sortForm" method=get onsubmit="return check_all_fields(lowerForm, upperForm, this)" action="browseTH.jsp">
-				<input type=hidden name="sortAttribute" value="sort">
-				<input type=text name="attributeValue" length=10>
+			<br>
+
+			<form name="searchForm" method=get onsubmit="return check_all_fields(this)" action="browseTH.jsp">
+				<input type=text name="lowerValue" length=10 placeholder="lower price">
+				<input type=text name="upperValue" length=10 placeholder="upper price">
+				<input type=text name="cityValue" length=10 placeholder="city">
+				<input type=text name="keywordValue" length=10 placeholder="keyword">
+				<input type=text name="categoryValue" length=10 placeholder="category">
+				<input type=text name="sortingValue" length=1 placeholder="sorted by">
 				<input type=submit class="search" value="search">
 			</form>
 			<BR>
-			
 			<%
 		}else{
 			
-			String lower = request.getParameter("lowerAttribute");
-			String upper = request.getParameter("upperAttribute");
-			String city = request.getParameter("cityAttribute");
-			String keyword = request.getParameter("keywordAttribute");
-			String category = request.getParameter("categoryAttribute");
+			String lower = request.getParameter("lowerValue");
+			String upper = request.getParameter("upperValue");
+			String city = request.getParameter("cityValue");
+			String keyword = request.getParameter("keywordValue");
+			String category = request.getParameter("categoryValue");
 			
 			int lowerInt = 0;
 			int upperInt = 10000;
