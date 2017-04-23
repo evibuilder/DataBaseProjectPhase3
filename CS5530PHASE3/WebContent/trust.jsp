@@ -7,6 +7,21 @@
 <title>User Trust</title>
 </head>
 <body>
+Rate User
+<br>
+<form name="record" method=get onsubmit="return check_all_fields(this)" action="orders.jsp">
+		User to Review: 
+		<input type=hidden name="searchAttribute" value="login">
+		<input type=text name="attributeValue" length=10>
+		<br><br>
+		Trusted or Not Trusted(1 or 2)
+		<br>
+		<input type=hidden name="searchAttribute" value="login">
+		<input type=text name="attributeValue" length=10>
+		<br><br>
+		<input type=submit>
+	</form>
+	<br><br><br>
 <a href="feedbackIndex.html">back to feedback menu</a><br>
 </body>
 </html>

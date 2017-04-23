@@ -7,6 +7,15 @@
 <title>Most Highly Rated THs</title>
 </head>
 <body>
+Highest Rated Houses
+<form name="record" method=get onsubmit="return check_all_fields(this)" action="orders.jsp">
+		Number of Max Results: 
+		<input type=hidden name="searchAttribute" value="login">
+		<input type=text name="attributeValue" length=10>
+		<br>
+		<input type=submit>
+	</form>
+	<br><br><br>
 <a href="statsIndex.html">back to stats menu</a><br>
 
 </body>

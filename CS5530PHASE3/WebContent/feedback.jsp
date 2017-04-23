@@ -7,7 +7,25 @@
 <title>Record Feedback</title>
 </head>
 <body>
-
+Record Feedback
+<br>
+<form name="record" method=get onsubmit="return check_all_fields(this)" action="orders.jsp">
+		House IQ: 
+		<input type=hidden name="searchAttribute" value="login">
+		<input type=text name="attributeValue" length=10>
+		<br><br>
+		Score: 
+		<input type=hidden name="searchAttribute" value="login">
+		<input type=text name="attributeValue" length=10>	
+		<br><br>
+		Comments *Optional*
+		<br>
+		<input type=hidden name="searchAttribute" value="login">
+		<input type=text name="attributeValue" length=10>
+		<br><br>
+		<input type=submit>
+	</form>
+	<br><br><br>
 <a href="feedbackIndex.html">back to feedback menu</a><br>
 
 </body>
