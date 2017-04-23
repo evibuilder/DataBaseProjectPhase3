@@ -34,9 +34,10 @@ function check_all_fields(login_form){
 	<%
 	} else {
 		String password = request.getParameter("passwordValue");
-		
+
 		Connector con = new Connector();
 		Users user = new Users();
+		
 		
 		if(user.login(username, password, con.stmt)){
 			
