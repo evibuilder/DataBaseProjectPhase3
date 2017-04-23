@@ -1,4 +1,4 @@
-package phase2;
+package cs5530;
 
 public class Pair {
 	
