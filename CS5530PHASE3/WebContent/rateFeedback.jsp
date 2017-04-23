@@ -7,7 +7,7 @@
 <title>Rate Feedback</title>
 </head>
 <body>
-Usefulness Rating
+<h1>Usefulness Rating</h1>
 <br>
 <form name="record" method=get onsubmit="return check_all_fields(this)" action="orders.jsp">
 		ID of House to Rate: 

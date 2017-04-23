@@ -8,6 +8,8 @@
 </head>
 <body>
 
+	<h1>Browse TH</h1>
+
 <a href="thIndex.html">back to TH menu</a><br>
 
 </body>

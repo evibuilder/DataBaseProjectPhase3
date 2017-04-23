@@ -7,7 +7,7 @@
 <title>Most Popular THs</title>
 </head>
 <body>
-Most Popular Houses
+<h1>Most Popular Houses</h1>
 <form name="record" method=get onsubmit="return check_all_fields(this)" action="orders.jsp">
 		Number of Max Results: 
 		<input type=hidden name="searchAttribute" value="login">

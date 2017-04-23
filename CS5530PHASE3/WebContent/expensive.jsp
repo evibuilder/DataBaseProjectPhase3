@@ -7,7 +7,7 @@
 <title>Most Expensive THs</title>
 </head>
 <body>
-Most Expensive Houses
+<h1>Most Expensive Houses</h1>
 <form name="record" method=get onsubmit="return check_all_fields(this)" action="orders.jsp">
 		Number of Max Results: 
 		<input type=hidden name="searchAttribute" value="login">

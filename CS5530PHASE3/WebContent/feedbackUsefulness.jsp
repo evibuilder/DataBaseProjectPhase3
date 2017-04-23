@@ -7,7 +7,7 @@
 <title>Feedback Usefulness</title>
 </head>
 <body>
-Top Useful Feedback
+<h1>Top Useful Feedback</h1>
 <br>
 <form name="record" method=get onsubmit="return check_all_fields(this)" action="orders.jsp">
 		House ID: 

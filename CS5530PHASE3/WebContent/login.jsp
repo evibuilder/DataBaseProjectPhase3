@@ -8,7 +8,7 @@ function check_all_fields(username_form, password_form){
 	//alert(username_form.usernameAttribute.value+"='"+username_form.usernameAttributeValue.value+"'");
 	//alert(password_form.passwordAttribute.value+"='"+password_form.passwordAattributeValue.value+"'");
 
-	if( username_form.usernameAttribute.value == "" || password_form.passwordAttribute.value == ""){
+	if( username_form.usernameAttributeValue.value == "" || password_form.passwordAattributeValue.value == ""){
 		alert("Form fields should be nonempty");
 		return false;
 	}
@@ -19,6 +19,7 @@ function check_all_fields(username_form, password_form){
 <title>Login Page</title>
 </head>
 <body>
+	<h1>Login Page</h1>
 
 	<%
 	String usernameAttribute = request.getParameter("usernameAttribute");
@@ -44,13 +45,19 @@ function check_all_fields(username_form, password_form){
 		String passwordAttribute = request.getParameter("passwordAttribute");
 		
 		Connector con = new Connector();
-		/*
-		if(Users.login(usernameAttribute, passwordAttribute, con.stmt)){
+		Users user = new Users();
+		
+		if(user.login(usernameAttribute, passwordAttribute, con.stmt)){
+			
+			session.setAttribute("username", usernameAttribute);
 			//load main index
 		}else{
 			//clear parameters
 			//reload the page
-		}*/
+		}
+
+		con.closeConnection();
+		
 	}
 	%>
 

@@ -1,12 +1,47 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" import="cs5530.*"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script>
+function check_all_fields(th_object, period_object){
+	if( th_object.attributeValue.value == "" || period_object.attributeValue.value == ""){
+		alert("Form fields should be nonempty");
+		return false;
+	}
+	return true;
+}
+</script> 
+
 <title>Reserve TH</title>
 </head>
 <body>
-<a href="thIndex.html">back to TH menu</a><br>
+<h1>Reserve TH</h1>
+
+	<% 
+	String thIdString = request.getParameter("thAttribute");
+	if(thIdString == null){
+	%>
+	
+	Enter ID of temporary housing to reserve
+	<form name="form_th">
+		<input type=hidden name="thAttribute" value="th">
+		<input type=text name="attributeValue" length=10>
+	</form>
+	<br>
+	
+	Enter ID of period to reserve
+	<form name="form_period" method=get onsubmit="return check_all_fields(form_th, this)" action="reserve.jsp">
+		<input type=hidden name="periodAttribute" value="period">
+		<input type=text name="attributeValue" length=10>
+		<input type=submit class="add to cart" value="add to cart">
+	</form>
+	
+	<%
+	} else {
+
+		//add to cart
+		//give suggested reservations
+	}
+	%>
+<a href="loginIndex.html">back</a>
 </body>
 </html>

@@ -7,6 +7,7 @@
 <title>New TH</title>
 </head>
 <body>
+<h1>New TH</h1>
 <a href="thIndex.html">back to TH menu</a><br>
 </body>
 </html>
