@@ -29,7 +29,7 @@ function check_all_fields(login_form){
 		<input type=text name="passwordValue" length=10 placeholder="password">
 				<input type=submit class="login" value="login">
 	</form>
-	<BR>
+	<BR> 
 	
 	<%
 	} else {
