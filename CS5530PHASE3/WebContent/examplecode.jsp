@@ -38,7 +38,7 @@ if( searchAttribute == null ){
 <%
 
 } else {
-
+/*
 	String attributeValue = request.getParameter("attributeValue");
 	Connector connector = new Connector();
 	Order order = new Order();
@@ -59,7 +59,7 @@ if( searchAttribute == null ){
 
 <%
  connector.closeStatement();
- connector.closeConnection();
+ connector.closeConnection();*/
 }  // We are ending the braces for else here
 %>
 
