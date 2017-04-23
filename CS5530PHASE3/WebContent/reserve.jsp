@@ -59,6 +59,6 @@ function check_all_fields(th_object, period_object){
 		//give suggested reservations
 	}
 	%>
-<a href="loginIndex.html">back</a>
+<a href="thIndex.html">back to TH menu</a>
 </body>
 </html>

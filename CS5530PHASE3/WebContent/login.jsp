@@ -61,6 +61,6 @@ function check_all_fields(username_form, password_form){
 	}
 	%>
 
-<a href="loginIndex.html">back</a>
+<a href="index.html">back</a>
 </body>
 </html>

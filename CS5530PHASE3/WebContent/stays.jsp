@@ -16,6 +16,8 @@ function check_all_fields(th_object, period_object){
 <title>Record Stay</title>
 </head>
 <body>
+	<h1>Record Stay</h1>
+
 	<% 
 	String thIdString = request.getParameter("thAttribute");
 	if(thIdString == null){

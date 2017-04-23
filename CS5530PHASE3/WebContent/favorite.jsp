@@ -55,7 +55,7 @@ function check_all_fields(form_obj){
 		
 	}
 		%>
-	}
+	
 	
 <a href="thIndex.html">back to TH menu</a><br>
 </body>
