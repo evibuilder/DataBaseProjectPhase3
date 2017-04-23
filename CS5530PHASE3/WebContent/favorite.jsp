@@ -10,7 +10,7 @@ function check_all_fields(form_obj){
 	//alert(username_form.usernameAttribute.value+"='"+username_form.usernameAttributeValue.value+"'");
 	//alert(password_form.passwordAttribute.value+"='"+password_form.passwordAattributeValue.value+"'");
 
-	if( form_obj.attributeValue.value == ""){
+	if( form_obj.idValue.value == ""){
 		alert("Form fields should be nonempty");
 		return false;
 	}
@@ -24,15 +24,14 @@ function check_all_fields(form_obj){
 	<h1>Make Favorite</h1>
 	
 	<%
-		String idString = request.getParameter("idAttribute");
+		String idString = request.getParameter("idValue");
 	
 	if(idString == null){
 	%>
 	
 	Enter the ID of the housing you would like to make your favorite:
 	<form name="idForm" method=get onsubmit="return check_all_fields(this)" action="favorite.jsp">
-		<input type=hidden name="idAttribute" value="id">
-		<input type=text name="attributeValue" length=10>
+		<input type=text name="idValue" length=10>
 		<input type=submit class="submit" value="submit">
 	</form>
 	

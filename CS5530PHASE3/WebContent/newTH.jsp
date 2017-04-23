@@ -6,12 +6,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <script  LANGUAGE="javascript">
-function check_all_fields(obj1, obj2, obj3, obj4, obj5, obj6, obj7){
+function check_all_fields(form){
 	
-	if( obj1.attributeValue.value == "" || obj2.attributeValue.value == "" ||
-			obj3.attributeValue.value == "" || obj4.attributeValue.value == "" ||
-			obj5.attributeValue.value == "" || obj6.attributeValue.value == "" ||
-			obj7.attributeValue.value == ""){
+	if( form.nameValue.value == "" || form.addressValue.value == "" ||
+			form.cityValue.value == "" || form.urlValue.value == "" ||
+			form.yearValue.value == "" || form.phoneValue.value == "" ||
+			form.categoryValue.value == ""){
 		alert("Form fields should be nonempty");
 		return false;
 	}
@@ -26,70 +26,33 @@ function check_all_fields(obj1, obj2, obj3, obj4, obj5, obj6, obj7){
 <h1>New TH</h1>
 
 		<%
-			String housingName = request.getParameter("nameAttribute");
+			String name = request.getParameter("nameValue");
 		
-		if(housingName == null){
+		if(name == null){
 		%>
 
-			Name of TH:
-			<form name="nameForm">
-				<input type=hidden name="nameAttribute" value="name">
-				<input type=text name="attributeValue" length=10>
-			</form>
-			<BR>
+			Please fill out the following information to register a new temporary housing:<BR>
 			
-			Address:
-				<form name="addressForm">
-				<input type=hidden name="addressAttribute" value="address">
-				<input type=text name="attributeValue" length=10>
+			<form name="houseForm" method=get onsubmit="return check_all_fields(this)" action="newTH.jsp">
+				<input type=text name="nameValue" length=10 placeholder="name">
+				<input type=text name="addressValue" length=10 placeholder="address">
+				<input type=text name="cityValue" length=10 placeholder="city">
+				<input type=text name="urlValue" length=10 placeholder="URL">
+				<input type=text name="yearValue" length=4 placeholder="year built">
+				<input type=text name="phoneValue" length=10 placeholder="phone #">
+				<input type=text name="categoryValue" length=10 placeholder="category">
+				<input type=submit class="register" value="register">
 			</form>
-			<BR>
-			
-			City:
-				<form name="cityForm">
-				<input type=hidden name="cityAttribute" value="city">
-				<input type=text name="attributeValue" length=10>
-			</form>
-			<BR>
-			
-			URL:
-				<form name="urlForm">
-				<input type=hidden name="urlAttribute" value="url">
-				<input type=text name="attributeValue" length=10>
-			</form>
-			<BR>
-			
-			Year Built:
-				<form name="yearForm">
-				<input type=hidden name="yearAttribute" value="year">
-				<input type=text name="attributeValue" length=10>
-			</form>
-			<BR>
-			
-			Phone Number:
-			<form name="numberForm">
-				<input type=hidden name="numberAttribute" value="number">
-				<input type=text name="attributeValue" length =10>
-			</form>
-			<BR>
-			
-			Category:
-				<form name="categoryForm" method=get onsubmit="return check_all_fields(nameForm, addressForm, cityForm, urlForm, yearForm, numberForm, this)" action="newTH.jsp">
-				<input type=hidden name="categoryAttribute" value="category">
-				<input type=text name="attributeValue" length=10>
-				<input type=submit class="submit" value="submit">
-			</form>
-			<BR>
 		
 		<%
 		}else{
 			
-			String address = request.getParameter("addressAttribute");
-			String city = request.getParameter("cityAttribute");
-			String URL = request.getParameter("urlAttribute");
-			String yearString = request.getParameter("yearAttribute");
-			String phonenumber = request.getParameter("numberAttribute");
-			String category = request.getParameter("categoryAttribute");
+			String address = request.getParameter("addressValue");
+			String city = request.getParameter("cityValue");
+			String URL = request.getParameter("urlValue");
+			String yearString = request.getParameter("yearValue");
+			String phonenumber = request.getParameter("phoneValue");
+			String category = request.getParameter("categoryValue");
 			int year = 0;
 			
 			try{
@@ -103,8 +66,8 @@ function check_all_fields(obj1, obj2, obj3, obj4, obj5, obj6, obj7){
 			
 			String username = (String)session.getAttribute("username");
 			
-			if(th.addNewPH(housingName, address, category, URL, year, phonenumber, username, city, con.stmt)){
-				%> Housing was successfully added to the system <%
+			if(th.addNewPH(name, address, category, URL, year, phonenumber, username, city, con.stmt)){
+				%> <BR>Housing was successfully added to the system <BR><%
 			}else{
 				//clear parameters
 				//reload page
