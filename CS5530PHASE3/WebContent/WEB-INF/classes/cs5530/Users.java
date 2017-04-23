@@ -350,8 +350,8 @@ public class Users {
 	}
 	
 	//for the given user, make the TH their favorite
-	public String makeHousingFavorite(String userLogin, int idOfTH, Statement stmt){
-		String result = "";
+	public boolean makeHousingFavorite(String userLogin, int idOfTH, Statement stmt){
+		boolean result = false;
 		int rowsChanged = 0;
 		
 		String sqlDate = LocalDate.getSQLDate();
@@ -361,10 +361,8 @@ public class Users {
 		
 		try{
 			rowsChanged = stmt.executeUpdate(sql);
-			if(rowsChanged == 0){
-				result = "There was an error updating the system";
-			}else{
-				result = "New Favorite was successfully updated";
+			if(rowsChanged > 0){
+				result = true;
 			}
 		}	
 		catch(SQLException e)

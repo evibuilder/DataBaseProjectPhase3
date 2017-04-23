@@ -38,6 +38,23 @@ function check_all_fields(th_object, period_object){
 	<%
 	} else {
 
+		String periodIdString = request.getParameter("periodAttribute");
+		
+		Connector con = new Connector();
+		Reservations res = new Reservations();
+		
+		String username = (String)session.getAttribute("username");
+		
+		int th_id = 0;
+		int period_id = 0;
+		
+		try{
+			th_id = Integer.parseInt(thIdString);
+			period_id = Integer.parseInt(periodIdString);
+		}catch(Exception e){
+			
+		}
+		
 		//add to cart
 		//give suggested reservations
 	}

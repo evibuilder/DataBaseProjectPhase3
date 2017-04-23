@@ -12,9 +12,9 @@ public class Housing {
 	public Housing(){}
 	
 	//adds a new PH to the system
-	public String addNewPH(String thName, String address, String category, String url, int yearBuilt, String phonenumber, String username, String city, Statement stmt){
+	public boolean addNewPH(String thName, String address, String category, String url, int yearBuilt, String phonenumber, String username, String city, Statement stmt){
 		int rowsChanged = 0;
-		String result = "";
+		boolean result = false;
 		
 		String sql="INSERT into Housing (name, address, category, URL, yearbuilt, phonenumber, login, city)"
 				+ "VALUES ('"+thName+"','"+address+"','"+category+"','"+url+"',"+yearBuilt+", '"+phonenumber+"', '"+username+"', '"+city+"')";
@@ -23,9 +23,7 @@ public class Housing {
    		 	rowsChanged = stmt.executeUpdate(sql);
    		 	
    		 	if(rowsChanged > 0){
-   		 		result = "Permanent housing successfully added";
-   		 	}else{
-   		 		result = "There was an error adding the permanent housing";
+   		 		result = true;
    		 	}
    		 	
 		 	}
