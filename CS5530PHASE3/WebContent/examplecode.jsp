@@ -22,14 +22,14 @@ if( searchAttribute == null ){
 %>
 
 	Form1: Search orders on user name:
-	<form name="user_search" method=get onsubmit="return check_all_fields(this)" action="orders.jsp">
+	<form name="user_search" method=get onsubmit="return check_all_fields(this)" action="examplecode.jsp">
 		<input type=hidden name="searchAttribute" value="login">
 		<input type=text name="attributeValue" length=10>
 		<input type=submit>
 	</form>
 	<BR><BR>
 	Form2: Search orders on director name:
-	<form name="director_search" method=get onsubmit="return check_all_fields(this)" action="orders.jsp">
+	<form name="director_search" method=get onsubmit="return check_all_fields(this)" action="examplecode.jsp">
 		<input type=hidden name="searchAttribute" value="director">
 		<input type=text name="attributeValue" length=10>
 		<input type=submit>

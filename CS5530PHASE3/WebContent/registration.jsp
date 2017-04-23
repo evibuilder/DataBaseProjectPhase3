@@ -25,8 +25,10 @@ function check_all_fields(username_form, password_form, firstname_form, lastname
 	<%
 	String usernameAttribute = request.getParameter("usernameAttribute");
 	if(usernameAttribute == null){
+		
+		out.println("The value of username is: " + usernameAttribute);
 	%>
-
+		<BR>
 		Username:
 		<form name="form_username">
 			<input type=hidden name="usernameAttribute" value="login">
@@ -72,6 +74,7 @@ function check_all_fields(username_form, password_form, firstname_form, lastname
 		
 	<%
 	}else{
+		out.println("The value of username is: " + usernameAttribute);
 		
 		String passwordAttribute = request.getParameter("passwordAttribute");
 		String firstnameAttribute = request.getParameter("firstnameAttribute");
@@ -84,7 +87,9 @@ function check_all_fields(username_form, password_form, firstname_form, lastname
 		
 		if(user.registerNewUser(usernameAttribute, passwordAttribute, firstnameAttribute, lastnameAttribute, addressAttribute, numberAttribute, con.stmt)){
 			//load the login index page
+			%> <a href="login.jsp">Login</a> <%
 		}else{
+			%> didn't work <%
 			//clear parameters
 			//reload current page
 		}

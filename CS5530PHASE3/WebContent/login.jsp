@@ -4,11 +4,8 @@
 <head>
 <script LANGUAGE="javascript">
 
-function check_all_fields(username_form, password_form){
-	//alert(username_form.usernameAttribute.value+"='"+username_form.usernameAttributeValue.value+"'");
-	//alert(password_form.passwordAttribute.value+"='"+password_form.passwordAattributeValue.value+"'");
-
-	if( username_form.usernameAttributeValue.value == "" || password_form.passwordAattributeValue.value == ""){
+function check_all_fields(login_form){
+	if( login_form.usernameValue.value == "" || login_form.passwordValue.value == ""){
 		alert("Form fields should be nonempty");
 		return false;
 	}
@@ -22,35 +19,32 @@ function check_all_fields(username_form, password_form){
 	<h1>Login Page</h1>
 
 	<%
-	String usernameAttribute = request.getParameter("usernameAttribute");
-	if(usernameAttribute == null){
+	String username = request.getParameter("usernameValue");
+	if(username == null){
 	%>
-
-	Username:
-	<form name="form_username">
-		<input type=hidden name="usernameAttribute" value="login">
-		<input type=text name="usernameAttributeValue" length=10>
+	<BR>
+	Please enter your login and password<BR>
+	<form name="form_username" method=get onsubmit="return check_all_fields(this)" action="login.jsp">
+		<input type=text name="usernameValue" length=10 placeholder="login">
+		<input type=text name="passwordValue" length=10 placeholder="password">
+				<input type=submit class="login" value="login">
 	</form>
 	<BR>
 	
-	Password:
-	<form name="form_password" method=get onsubmit="return check_all_fields(form_username, this)" action="login.jsp">
-		<input type=hidden name="passwordAttribute" value="password">
-		<input type=text name="passwordAattributeValue" length=10>
-		<input type=submit class="login" value="login">
-	</form>
-
 	<%
 	} else {
-		String passwordAttribute = request.getParameter("passwordAttribute");
+		String password = request.getParameter("passwordValue");
 		
 		Connector con = new Connector();
 		Users user = new Users();
 		
-		if(user.login(usernameAttribute, passwordAttribute, con.stmt)){
+		if(user.login(username, password, con.stmt)){
 			
-			session.setAttribute("username", usernameAttribute);
-			//load main index
+			session.setAttribute("username", username);
+			%><BR>login was successful <BR>
+			<a href="mainIndex.html">To Main Menu</a>
+			<%
+			
 		}else{
 			//clear parameters
 			//reload the page
