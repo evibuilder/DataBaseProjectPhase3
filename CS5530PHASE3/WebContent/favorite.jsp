@@ -25,7 +25,6 @@ function check_all_fields(form_obj){
 	
 	<%
 		String idString = request.getParameter("idValue");
-	
 	if(idString == null){
 	%>
 	
@@ -49,10 +48,15 @@ function check_all_fields(form_obj){
 		String username = (String)session.getAttribute("username");
 		
 		if(user.makeHousingFavorite(username, thID, con.stmt)){
-			%> Favorite Successfully Updated <%
+			%> <BR>Favorite Successfully Updated<BR> <%
+		}else{
+			%><BR>There was an error with your request<BR><%
 		}
 		
+		con.closeConnection();
 	}
+	
+
 		%>
 	
 	

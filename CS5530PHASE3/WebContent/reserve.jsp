@@ -52,6 +52,8 @@ function check_all_fields(form){
 		
 		//add to cart
 		//give suggested reservations
+		con.closeConnection();
+
 	}
 	%>
 <a href="thIndex.html">back to TH menu</a>

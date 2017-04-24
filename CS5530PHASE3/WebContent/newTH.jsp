@@ -69,10 +69,11 @@ function check_all_fields(form){
 			if(th.addNewPH(name, address, category, URL, year, phonenumber, username, city, con.stmt)){
 				%> <BR>Housing was successfully added to the system <BR><%
 			}else{
-				//clear parameters
-				//reload page
+				%><BR>There was an error adding your housing to the system <BR><%
+				
 			}
-			
+			con.closeConnection();
+
 		}
 		%>
 

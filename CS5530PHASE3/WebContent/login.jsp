@@ -31,13 +31,14 @@ function check_all_fields(login_form){
 	</form>
 	<BR> 
 	
+	<a href="index.html">back</a>
+	
 	<%
 	} else {
 		String password = request.getParameter("passwordValue");
 
 		Connector con = new Connector();
 		Users user = new Users();
-		
 		
 		if(user.login(username, password, con.stmt)){
 			
@@ -47,8 +48,8 @@ function check_all_fields(login_form){
 			<%
 			
 		}else{
-			//clear parameters
-			//reload the page
+			%><BR>login was unsuccessful <BR>
+			<a href="index.html">back</a><%
 		}
 
 		con.closeConnection();
@@ -56,6 +57,5 @@ function check_all_fields(login_form){
 	}
 	%>
 
-<a href="index.html">back</a>
 </body>
 </html>

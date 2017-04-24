@@ -54,9 +54,11 @@ function check_all_fields(form){
 		
 		if(user.registerNewUser(username, password, firstname, lastname, address, phone, con.stmt)){
 			//load the login index page
-			%> <a href="login.jsp">Login</a> <%
+			%> <BR> Registration was successful <BR> 
+			<a href="login.jsp">Login</a> <%
 		}else{
-			%> didn't work <%
+			%> <BR> Registration was not successful <BR>
+			<a href="index.html">back</a> <%
 			//clear parameters
 			//reload current page
 		}
@@ -65,6 +67,6 @@ function check_all_fields(form){
 	}
 	%>
 
-<a href="index.html">back</a>
+
 </body>
 </html>
