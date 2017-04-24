@@ -1,27 +1,57 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" import="cs5530.*"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script>
+function check_all_fields(form){
+	if( form.reviewee.value == "" || form.trust.value == ""){
+		alert("Form fields should be nonempty");
+		return false;
+	}
+	return true;
+}
+</script>
 <title>User Trust</title>
 </head>
 <body>
 Rate User
 <br>
-<form name="record" method=get onsubmit="return check_all_fields(this)" action="orders.jsp">
+    <% 
+	String thIdString = request.getParameter("houseID");
+	if(thIdString == null){
+	%>
+<form name="trusting" method=get onsubmit="return check_all_fields(this)" action="trust.jsp">
 		User to Review: 
-		<input type=hidden name="searchAttribute" value="login">
-		<input type=text name="attributeValue" length=10>
+		<input type=text name="reviewee" length=10>
 		<br><br>
 		Trusted or Not Trusted(1 or 2)
 		<br>
-		<input type=hidden name="searchAttribute" value="login">
-		<input type=text name="attributeValue" length=10>
+		<input type=text name="trust" length=10>
 		<br><br>
-		<input type=submit>
+		<input type=submit  class="Rate" value="Rate">
 	</form>
 	<br><br><br>
+	<% 
+	} else {
+
+		String trustString = request.getParameter("trust");
+		
+		Connector con = new Connector();
+		Reservations res = new Reservations();
+		
+		String username = (String)session.getAttribute("username");
+		
+		int trust_t = 0;
+		
+		try{
+			trust_t = Integer.parseInt(trustString);
+		}catch(Exception e){
+			
+		}
+		
+		//add to cart
+		//give suggested reservations
+	}
+	%>
 <a href="feedbackIndex.html">back to feedback menu</a><br>
 </body>
 </html>

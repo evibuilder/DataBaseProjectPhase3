@@ -1,27 +1,59 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" import="cs5530.*"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script>
+function check_all_fields(form){
+	if( form.houseID.value == "" || form.usefulRate.value == ""){
+		alert("Form fields should be nonempty");
+		return false;
+	}
+	return true;
+}
+</script>
 <title>Rate Feedback</title>
 </head>
 <body>
 <h1>Usefulness Rating</h1>
 <br>
-<form name="record" method=get onsubmit="return check_all_fields(this)" action="orders.jsp">
+	<% 
+	String thIdString = request.getParameter("houseID");
+	if(thIdString == null){
+	%>
+<form name="rating" method=get onsubmit="return check_all_fields(this)" action="rateFeedback.jsp">
 		ID of House to Rate: 
-		<input type=hidden name="searchAttribute" value="login">
-		<input type=text name="attributeValue" length=10>
+		<input type=text name="houseID" length=10>
 		<br><br>
 		Usefulness (2. Very Useful, 1. Useful, 0. Useless)
 		<br>
-		<input type=hidden name="searchAttribute" value="login">
-		<input type=text name="attributeValue" length=10>
+		<input type=text name="usefulRate" length=10>
 		<br><br>
-		<input type=submit>
+		<input type=submit  class="Rate" value="Rate">
 	</form>
 	<br><br><br>
+	<% 
+	} else {
+
+		String usefulString = request.getParameter("usefulRate");
+		
+		Connector con = new Connector();
+		Reservations res = new Reservations();
+		
+		String username = (String)session.getAttribute("username");
+		
+		int th_id = 0;
+		int useful_u = 0;
+		
+		try{
+			th_id = Integer.parseInt(thIdString);
+			useful_u = Integer.parseInt(usefulString);
+		}catch(Exception e){
+			
+		}
+		
+		//add to cart
+		//give suggested reservations
+	}
+	%>
 <a href="feedbackIndex.html">back to feedback menu</a><br>
 </body>
 </html>

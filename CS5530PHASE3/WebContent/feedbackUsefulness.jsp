@@ -1,27 +1,60 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" import="cs5530.*"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script>
+function check_all_fields(form){
+	if( form.houseID.value == "" || form.results.value == ""){
+		alert("Form fields should be nonempty");
+		return false;
+	}
+	return true;
+}
+</script>
 <title>Feedback Usefulness</title>
 </head>
 <body>
 <h1>Top Useful Feedback</h1>
 <br>
+	<% 
+	String thIdString = request.getParameter("houseID");
+	if(thIdString == null){
+	%>
 <form name="record" method=get onsubmit="return check_all_fields(this)" action="orders.jsp">
 		House ID: 
-		<input type=hidden name="searchAttribute" value="login">
-		<input type=text name="attributeValue" length=10>
+		<input type=text name="houseID" length=10>
 		<br><br>
 		Max Number of Results:
 		<br>
-		<input type=hidden name="searchAttribute" value="login">
-		<input type=text name="attributeValue" length=10>
+		<input type=text name="results" length=10>
 		<br><br>
-		<input type=submit>
+		<input type=submit class="view" value="view">
 	</form>
 	<br><br><br>
+	<% 
+	} else {
+
+		String resultsString = request.getParameter("results");
+		
+		Connector con = new Connector();
+		Reservations res = new Reservations();
+		
+		String username = (String)session.getAttribute("username");
+		
+		int hs_id = 0;
+		int results_r = 0;
+		
+		try{
+			hs_id = Integer.parseInt(thIdString);
+			results_r = Integer.parseInt(resultsString);
+		}catch(Exception e){
+			
+		}
+		
+		Feedback fb = new Feedback();
+		String results = fb.showFeedbackForTH(hs_id, con.stmt);
+		//give suggested reservations
+	}
+	%>
 <a href="feedbackIndex.html">back to feedback menu</a><br>
 </body>
 </html>

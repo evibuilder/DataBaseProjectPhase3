@@ -1,31 +1,63 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" import="cs5530.*"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script>
+function check_all_fields(form){
+	if( form.houseID.value == "" || form.score.value == ""){
+		alert("Form fields should be nonempty");
+		return false;
+	}
+	return true;
+}
+</script>
+
 <title>Record Feedback</title>
 </head>
 <body>
 <h1>Record Feedback</h1>
 <br>
-<form name="record" method=get onsubmit="return check_all_fields(this)" action="orders.jsp">
-		House IQ: 
-		<input type=hidden name="searchAttribute" value="login">
-		<input type=text name="attributeValue" length=10>
+	<% 
+	String thIdString = request.getParameter("houseID");
+	if(thIdString == null){
+	%>
+	<form name="record" method=get onsubmit="return check_all_fields(this)" action="feedback.jsp">
+		House ID: 
+		<input type=text name=houseID length=10>
 		<br><br>
 		Score: 
-		<input type=hidden name="searchAttribute" value="login">
-		<input type=text name="attributeValue" length=10>	
+		<input type=text name=score length=10 placeholder="1-10">	
 		<br><br>
 		Comments *Optional*
 		<br>
-		<input type=hidden name="searchAttribute" value="login">
-		<input type=text name="attributeValue" length=10>
+		<input type=text name="comment" length=10>
 		<br><br>
-		<input type=submit>
+		<input type=submit class="Record Feedback" value="Record Feedback">
 	</form>
 	<br><br><br>
+	<% 
+	} else {
+
+		String scoreString = request.getParameter("score");
+		
+		Connector con = new Connector();
+		Reservations res = new Reservations();
+		
+		String username = (String)session.getAttribute("username");
+		
+		int th_id = 0;
+		int score_s = 0;
+		
+		try{
+			th_id = Integer.parseInt(thIdString);
+			score_s = Integer.parseInt(scoreString);
+		}catch(Exception e){
+			
+		}
+		
+		//add to cart
+		//give suggested reservations
+	}
+	%>
 <a href="feedbackIndex.html">back to feedback menu</a><br>
 
 </body>

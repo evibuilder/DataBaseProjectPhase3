@@ -1,4 +1,5 @@
-package cs5530;
+package phase2;
+
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -12,7 +13,8 @@ public class Statistics {
 	public Statistics(){}
 	
 	//returns as a string, a list of the most popular TH
-	public void mostPopularTH(int numberOfResults, Statement stmt){
+	public String mostPopularTH(int numberOfResults, Statement stmt){
+		String result = "";
 		String sql = "select h.name, count(h.hid) as totalVisits, h.category "
 				+ "from Visit v, Housing h where"
 				+ " v.hid = h.hid AND h.category = 'Condo' "
@@ -22,20 +24,21 @@ public class Statistics {
 		ResultSet rs = null;
 		ResultSetMetaData rsmd = null;
 		
-		
+		result += "Condo:\n";
 		try{
 			rs = stmt.executeQuery(sql);
 			rsmd = rs.getMetaData();
 			int colCount = rsmd.getColumnCount();
 		
-			System.out.println("Name  Visits  Category");
+			//System.out.println("Name  Visits  Category");
 			int count = 0;
 			while(rs.next() && count < numberOfResults){
 				count++;
 				for(int i = 1; i <= colCount; i++){
-					System.out.print(rs.getString(i) + "  ");
+					//System.out.print(rs.getString(i) + "  ");
+					result += rs.getString(i) + "  ";
 				}
-				System.out.println();
+				result += "\n";
 			}
 		}		 	
 		catch(SQLException e)
@@ -52,7 +55,7 @@ public class Statistics {
 		
 		rs = null;
 		rsmd = null;
-		
+		result += "Studio:\n";
 		try{
 			rs = stmt.executeQuery(sql);
 			rsmd = rs.getMetaData();
@@ -62,9 +65,10 @@ public class Statistics {
 			while(rs.next() && count < numberOfResults){
 				count++;
 				for(int i = 1; i <= colCount; i++){
-					System.out.print(rs.getString(i) + "  ");
+					//System.out.print(rs.getString(i) + "  ");
+					result += rs.getString(i) + "  ";
 				}
-				System.out.println();
+				result += "\n";
 			}
 		}		 	
 		catch(SQLException e)
@@ -81,7 +85,7 @@ public class Statistics {
 		
 		rs = null;
 		rsmd = null;
-		
+		result += "House:\n";
 		try{
 			rs = stmt.executeQuery(sql);
 			rsmd = rs.getMetaData();
@@ -91,9 +95,10 @@ public class Statistics {
 			while(rs.next() && count < numberOfResults){
 				count++;
 				for(int i = 1; i <= colCount; i++){
-					System.out.print(rs.getString(i) + "  ");
+					//System.out.print(rs.getString(i) + "  ");
+					result += rs.getString(i) + "  ";
 				}
-				System.out.println();
+				result += "\n";
 			}
 		}		 	
 		catch(SQLException e)
@@ -101,10 +106,12 @@ public class Statistics {
 			System.err.println("cannot execute the query");
 			System.err.println("error: " + e.getMessage());
 	 	}
+		return result;
 	}
 	
 	//returns as a string, a list of the most expensive TH
-	public void mostExpensiveTH(int numberOfResults, Statement stmt){
+	public String mostExpensiveTH(int numberOfResults, Statement stmt){
+		String result = "";
 		String sql = "select h.name, avg(cost) as avgCost, h.category "
 				+ "from Visit v, Housing h where"
 				+ " v.hid = h.hid AND h.category = 'Condo' "
@@ -114,20 +121,21 @@ public class Statistics {
 		ResultSet rs = null;
 		ResultSetMetaData rsmd = null;
 		
-		
+		result += "Condo:\n";
 		try{
 			rs = stmt.executeQuery(sql);
 			rsmd = rs.getMetaData();
 			int colCount = rsmd.getColumnCount();
 		
-			System.out.println("Name  AvgCost  Category");
+			//System.out.println("Name  AvgCost  Category");
 			int count = 0;
 			while(rs.next() && count < numberOfResults){
 				count++;
 				for(int i = 1; i <= colCount; i++){
-					System.out.print(rs.getString(i) + "  ");
+					//System.out.print(rs.getString(i) + "  ");
+					result += rs.getString(i) + "  ";
 				}
-				System.out.println();
+				result += "\n";
 			}
 		}		 	
 		catch(SQLException e)
@@ -145,7 +153,7 @@ public class Statistics {
 		rs = null;
 		rsmd = null;
 		
-		
+		result += "Studio:\n";
 		try{
 			rs = stmt.executeQuery(sql);
 			rsmd = rs.getMetaData();
@@ -155,9 +163,10 @@ public class Statistics {
 			while(rs.next() && count < numberOfResults){
 				count++;
 				for(int i = 1; i <= colCount; i++){
-					System.out.print(rs.getString(i) + "  ");
+					//System.out.print(rs.getString(i) + "  ");
+					result += rs.getString(i) + "  ";
 				}
-				System.out.println();
+				result += "\n";
 			}
 		}		 	
 		catch(SQLException e)
@@ -175,7 +184,7 @@ public class Statistics {
 		rs = null;
 		rsmd = null;
 		
-		
+		result += "House:\n";
 		try{
 			rs = stmt.executeQuery(sql);
 			rsmd = rs.getMetaData();
@@ -185,9 +194,10 @@ public class Statistics {
 			while(rs.next() && count < numberOfResults){
 				count++;
 				for(int i = 1; i <= colCount; i++){
-					System.out.print(rs.getString(i) + "  ");
+					//System.out.print(rs.getString(i) + "  ");
+					result += rs.getString(i) + "  ";
 				}
-				System.out.println();
+				result += "\n";
 			}
 		}		 	
 		catch(SQLException e)
@@ -195,10 +205,12 @@ public class Statistics {
 			System.err.println("cannot execute the query");
 			System.err.println("error: " + e.getMessage());
 	 	}
+		return result;
 	}
 	
 	//returns as a string, a list of the most highly rated PH
-	public void mostHighlyRatedPH(int numberOfResults, Statement stmt){
+	public String mostHighlyRatedPH(int numberOfResults, Statement stmt){
+		String result = "";
 		String sql = "select h.name, avg(score) as avgScore, h.category "
 				+ "from Feedback f, Housing h where"
 				+ " f.hid = h.hid AND h.category = 'Condo' "
@@ -208,20 +220,21 @@ public class Statistics {
 		ResultSet rs = null;
 		ResultSetMetaData rsmd = null;
 		
-		
+		result += "Condo:\n";
 		try{
 			rs = stmt.executeQuery(sql);
 			rsmd = rs.getMetaData();
 			int colCount = rsmd.getColumnCount();
 		
-			System.out.println("Name  avgScore  Category");
+			//System.out.println("Name  avgScore  Category");
 			int count = 0;
 			while(rs.next() && count < numberOfResults){
 				count++;
 				for(int i = 1; i <= colCount; i++){
-					System.out.print(rs.getString(i) + "  ");
+					//System.out.print(rs.getString(i) + "  ");
+					result += rs.getString(i) + "  ";
 				}
-				System.out.println();
+				result += "\n";
 			}
 		}		 	
 		catch(SQLException e)
@@ -239,7 +252,7 @@ public class Statistics {
 		rs = null;
 		rsmd = null;
 		
-		
+		result += "Studio:\n";
 		try{
 			rs = stmt.executeQuery(sql);
 			rsmd = rs.getMetaData();
@@ -249,9 +262,10 @@ public class Statistics {
 			while(rs.next() && count < numberOfResults){
 				count++;
 				for(int i = 1; i <= colCount; i++){
-					System.out.print(rs.getString(i) + "  ");
+					//System.out.print(rs.getString(i) + "  ");
+					result += rs.getString(i) + "  ";
 				}
-				System.out.println();
+				result += "\n";
 			}
 		}		 	
 		catch(SQLException e)
@@ -269,7 +283,7 @@ public class Statistics {
 		rs = null;
 		rsmd = null;
 		
-		
+		result += "House:\n";
 		try{
 			rs = stmt.executeQuery(sql);
 			rsmd = rs.getMetaData();
@@ -279,9 +293,10 @@ public class Statistics {
 			while(rs.next() && count < numberOfResults){
 				count++;
 				for(int i = 1; i <= colCount; i++){
-					System.out.print(rs.getString(i) + "  ");
+					//System.out.print(rs.getString(i) + "  ");
+					result += rs.getString(i) + "  ";
 				}
-				System.out.println();
+				result += "\n";
 			}
 		}		 	
 		catch(SQLException e)
@@ -289,6 +304,7 @@ public class Statistics {
 			System.err.println("cannot execute the query");
 			System.err.println("error: " + e.getMessage());
 	 	}
+		return result;
 	}
 	
 	public String mostUsefulUsers(int numberOfResults, Statement stmt){
@@ -408,18 +424,3 @@ public class Statistics {
 		return result;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
